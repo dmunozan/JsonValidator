@@ -13,14 +13,16 @@ namespace JsonValidator
             this.end = end;
         }
 
-        public bool Match(string text)
+        public IMatch Match(string text)
         {
             if (string.IsNullOrEmpty(text))
             {
-                return false;
+                return new Match(false, text);
             }
 
-            return this.start <= text[0] && text[0] <= this.end;
+            bool isInRange = this.start <= text[0] && text[0] <= this.end;
+
+            return isInRange ? new Match(isInRange, text.Substring(1)) : new Match(isInRange, text);
         }
     }
 }
