@@ -18,7 +18,21 @@ namespace JsonValidator
                 return new Match(false, text);
             }
 
-            return new Match(true, text.Substring(patterns.Length));
+            string remainingText = text;
+
+            foreach (var pattern in patterns)
+            {
+                Match currentPatternMatch = (Match)pattern.Match(remainingText);
+
+                if (!currentPatternMatch.Success())
+                {
+                    return new Match(false, text);
+                }
+
+                remainingText = currentPatternMatch.RemainingText();
+            }
+
+            return new Match(true, remainingText);
         }
     }
 }
