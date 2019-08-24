@@ -19,105 +19,190 @@ namespace JsonValidator.Tests
         );
 
         [Fact]
-        public void MatchWhenStartsWithDigitCharacterShouldReturnTrue()
+        public void MatchWhenStartsWithDigitCharacterShouldReturnTrueAndRemainingText()
         {
-            Assert.True(digit.Match("012"));
+            Match expectedResult = new Match(true, "12");
+            Match obtainedResult = (Match)digit.Match("012");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithFirstCharOfDigitRangeShouldReturnTrue()
+        public void MatchWhenStartsWithFirstCharOfDigitRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(digit.Match("12"));
+            Match expectedResult = new Match(true, "2");
+            Match obtainedResult = (Match)digit.Match("12");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithLastCharOfDigitRangeShouldReturnTrue()
+        public void MatchWhenStartsWithLastCharOfDigitRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(digit.Match("92"));
+            Match expectedResult = new Match(true, "2");
+            Match obtainedResult = (Match)digit.Match("92");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithCharOutOfDigitRangeAndNotDigitCharacterShouldReturnFalse()
+        public void MatchWhenStartsWithCharOutOfDigitRangeAndNotDigitCharacterShouldReturnFalseAndText()
         {
-            Assert.False(digit.Match("a9"));
+            Match expectedResult = new Match(false, "a9");
+            Match obtainedResult = (Match)digit.Match("a9");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenEmptyOnDigitShouldReturnFalse()
+        public void MatchWhenEmptyOnDigitShouldReturnFalseAndText()
         {
-            Assert.False(digit.Match(""));
+            Match expectedResult = new Match(false, "");
+            Match obtainedResult = (Match)digit.Match("");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenNullOnDigitShouldReturnFalse()
+        public void MatchWhenNullOnDigitShouldReturnFalseAndText()
         {
-            Assert.False(digit.Match(null));
+            Match expectedResult = new Match(false, null);
+            Match obtainedResult = (Match)digit.Match(null);
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithHexDigitCharacterShouldReturnTrue()
+        public void MatchWhenStartsWithHexDigitCharacterShouldReturnTrueAndRemainingText()
         {
-            Assert.True(hex.Match("012"));
+            Match expectedResult = new Match(true, "12");
+            Match obtainedResult = (Match)hex.Match("012");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithFirstCharOfHexDigitRangeShouldReturnTrue()
+        public void MatchWhenStartsWithFirstCharOfHexDigitRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(hex.Match("12"));
+            Match expectedResult = new Match(true, "2");
+            Match obtainedResult = (Match)hex.Match("12");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithLastCharOfHexDigitRangeShouldReturnTrue()
+        public void MatchWhenStartsWithLastCharOfHexDigitRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(hex.Match("92"));
+            Match expectedResult = new Match(true, "2");
+            Match obtainedResult = (Match)hex.Match("92");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithFirstCharOfFirstHexRangeShouldReturnTrue()
+        public void MatchWhenStartsWithFirstCharOfFirstHexRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(hex.Match("a9"));
+            Match expectedResult = new Match(true, "9");
+            Match obtainedResult = (Match)hex.Match("a9");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithLastCharOfFirstHexRangeShouldReturnTrue()
+        public void MatchWhenStartsWithLastCharOfFirstHexRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(hex.Match("f8"));
+            Match expectedResult = new Match(true, "8");
+            Match obtainedResult = (Match)hex.Match("f8");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithFirstCharOfSecondHexRangeShouldReturnTrue()
+        public void MatchWhenStartsWithFirstCharOfSecondHexRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(hex.Match("A9"));
+            Match expectedResult = new Match(true, "9");
+            Match obtainedResult = (Match)hex.Match("A9");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithLastCharOfSecondHexRangeShouldReturnTrue()
+        public void MatchWhenStartsWithLastCharOfSecondHexRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(hex.Match("F8"));
+            Match expectedResult = new Match(true, "8");
+            Match obtainedResult = (Match)hex.Match("F8");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithCharOutOfFirstHexRangeAndNotSecondHexRangeDigitCharacterOrDigitRangeShouldReturnFalse()
+        public void MatchWhenStartsWithCharOutOfFirstHexRangeAndNotSecondHexRangeDigitCharacterOrDigitRangeShouldReturnFalseAndText()
         {
-            Assert.False(hex.Match("g8"));
+            Match expectedResult = new Match(false, "g8");
+            Match obtainedResult = (Match)hex.Match("g8");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenStartsWithCharOutOfSecondHexRangeAndNotFirstHexRangeDigitCharacterOrDigitRangeShouldReturnFalse()
+        public void MatchWhenStartsWithCharOutOfSecondHexRangeAndNotFirstHexRangeDigitCharacterOrDigitRangeShouldReturnFalseAndText()
         {
-            Assert.False(hex.Match("G8"));
+            Match expectedResult = new Match(false, "G8");
+            Match obtainedResult = (Match)hex.Match("G8");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenEmptyOnHexShouldReturnFalse()
+        public void MatchWhenEmptyOnHexShouldReturnFalseAndText()
         {
-            Assert.False(hex.Match(""));
+            Match expectedResult = new Match(false, "");
+            Match obtainedResult = (Match)hex.Match("");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenNullOnHexShouldReturnFalse()
+        public void MatchWhenNullOnHexShouldReturnFalseAndText()
         {
-            Assert.False(hex.Match(null));
+            Match expectedResult = new Match(false, null);
+            Match obtainedResult = (Match)hex.Match(null);
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
     }
 }
