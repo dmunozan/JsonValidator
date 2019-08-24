@@ -11,22 +11,23 @@ namespace JsonValidator
             this.patterns = patterns;
         }
 
-        public bool Match(string text)
+        public IMatch Match(string text)
         {
             if (string.IsNullOrEmpty(text))
             {
-                return false;
+                return new Match(false, text);
             }
 
             foreach (var pattern in patterns)
             {
-                if (pattern.Match(text))
+                Match currentPatternMatch = (Match)pattern.Match(text);
+                if (currentPatternMatch.Success())
                 {
-                    return true;
+                    return new Match(true, currentPatternMatch.RemainingText());
                 }
             }
 
-            return false;
+            return new Match(false, text);
         }
     }
 }
