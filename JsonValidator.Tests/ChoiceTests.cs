@@ -10,14 +10,6 @@ namespace JsonValidator.Tests
                 new Range('1', '9')
         );
 
-        static Choice hex = new Choice(
-                digit,
-                new Choice(
-                    new Range('a', 'f'),
-                    new Range('A', 'F')
-                )
-        );
-
         [Fact]
         public void MatchWhenStartsWithDigitCharacterShouldReturnTrueAndRemainingText()
         {
@@ -83,6 +75,14 @@ namespace JsonValidator.Tests
 
             Assert.Equal(expectedResultString, obtainedResultString);
         }
+
+        static Choice hex = new Choice(
+                digit,
+                new Choice(
+                    new Range('a', 'f'),
+                    new Range('A', 'F')
+                )
+        );
 
         [Fact]
         public void MatchWhenStartsWithHexDigitCharacterShouldReturnTrueAndRemainingText()
