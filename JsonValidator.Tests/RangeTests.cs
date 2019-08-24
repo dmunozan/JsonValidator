@@ -6,39 +6,69 @@ namespace JsonValidator.Tests
     public class RangeTests
     {
         [Fact]
-        public void MatchWhenNullShouldReturnFalse()
+        public void MatchWhenNullShouldReturnFalseAndNull()
         {
-            Assert.False(new Range('a', 'z').Match(null));
+            Match expectedResult = new Match(false, null);
+            Match obtainedResult = (Match)new Range('a', 'z').Match(null);
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenEmptyShouldReturnFalse()
+        public void MatchWhenEmptyShouldReturnFalseAndEmptyString()
         {
-            Assert.False(new Range('a', 'z').Match(""));
+            Match expectedResult = new Match(false, "");
+            Match obtainedResult = (Match)new Range('a', 'z').Match("");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenFirstCharOfRangeShouldReturnTrue()
+        public void MatchWhenFirstCharOfRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(new Range('a', 'f').Match("abc"));
+            Match expectedResult = new Match(true, "bc");
+            Match obtainedResult = (Match)new Range('a', 'f').Match("abc");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenLastCharOfRangeShouldReturnTrue()
+        public void MatchWhenLastCharOfRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(new Range('a', 'f').Match("fab"));
+            Match expectedResult = new Match(true, "ab");
+            Match obtainedResult = (Match)new Range('a', 'f').Match("fab");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenCharOnRangeShouldReturnTrue()
+        public void MatchWhenCharOnRangeShouldReturnTrueAndRemainingText()
         {
-            Assert.True(new Range('a', 'f').Match("bcd"));
+            Match expectedResult = new Match(true, "cd");
+            Match obtainedResult = (Match)new Range('a', 'f').Match("bcd");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenCharOutOfRangeShouldReturnFalse()
+        public void MatchWhenCharOutOfRangeShouldReturnFalseAndText()
         {
-            Assert.False(new Range('a', 'f').Match("1ab"));
+            Match expectedResult = new Match(false, "1ab");
+            Match obtainedResult = (Match)new Range('a', 'f').Match("1ab");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
     }
 }
