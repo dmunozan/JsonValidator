@@ -20,5 +20,16 @@ namespace JsonValidator.Tests
 
             Assert.Equal(expectedResultString, obtainedResultString);
         }
+
+        [Fact]
+        public void MatchWhenStartsWithAButNotBShouldReturnFalseAndText()
+        {
+            Match expectedResult = new Match(false, "ax");
+            Match obtainedResult = (Match)ab.Match("ax");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
+        }
     }
 }
