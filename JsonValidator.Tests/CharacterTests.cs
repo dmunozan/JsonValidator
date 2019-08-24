@@ -6,27 +6,47 @@ namespace JsonValidator.Tests
     public class CharacterTests
     {
         [Fact]
-        public void MatchWhenNullShouldReturnFalse()
+        public void MatchWhenNullShouldReturnFalseAndNull()
         {
-            Assert.False(new Character('a').Match(null));
+            Match expectedResult = new Match(false, null);
+            Match obtainedResult = (Match)new Character('a').Match(null);
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenEmptyShouldReturnFalse()
+        public void MatchWhenEmptyShouldReturnFalseAndEmptyString()
         {
-            Assert.False(new Character('a').Match(""));
+            Match expectedResult = new Match(false, "");
+            Match obtainedResult = (Match)new Character('a').Match("");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenFirstCharFromTextMatchesShouldReturnTrue()
+        public void MatchWhenFirstCharFromTextMatchesShouldReturnTrueAndRemainingText()
         {
-            Assert.True(new Character('a').Match("all right"));
+            Match expectedResult = new Match(true, "ll right");
+            Match obtainedResult = (Match)new Character('a').Match("all right");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
 
         [Fact]
-        public void MatchWhenFirstCharFromTextDoNotMatchesShouldReturnFalse()
+        public void MatchWhenFirstCharFromTextDoNotMatchesShouldReturnFalseAndText()
         {
-            Assert.False(new Character('a').Match("wrong"));
+            Match expectedResult = new Match(false, "wrong");
+            Match obtainedResult = (Match)new Character('a').Match("wrong");
+            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
+            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+
+            Assert.Equal(expectedResultString, obtainedResultString);
         }
     }
 }
