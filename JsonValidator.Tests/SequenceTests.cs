@@ -81,12 +81,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithABButNotCShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "abx");
-            Match obtainedResult = (Match)abc.Match("abx");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = abc.Match("abx");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("abx", obtainedResult.RemainingText());
         }
 
         [Fact]
