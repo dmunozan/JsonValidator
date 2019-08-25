@@ -120,12 +120,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithFirstCharOfSecondHexRangeShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "9");
-            Match obtainedResult = (Match)hex.Match("A9");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hex.Match("A9");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("9", obtainedResult.RemainingText());
         }
 
         [Fact]
