@@ -35,12 +35,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenLastCharOfRangeShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "ab");
-            Match obtainedResult = (Match)new Range('a', 'f').Match("fab");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
-
-            Assert.Equal(expectedResultString, obtainedResultString);
+            IMatch obtainedResult = new Range('a', 'f').Match("fab");
+            
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("ab", obtainedResult.RemainingText());
         }
 
         [Fact]
