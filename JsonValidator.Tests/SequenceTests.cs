@@ -99,12 +99,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenABCNullShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, null);
-            Match obtainedResult = (Match)abc.Match(null);
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = abc.Match(null);
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Null(obtainedResult.RemainingText());
         }
 
         static Choice hex = new Choice(
