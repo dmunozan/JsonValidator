@@ -22,12 +22,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithAButNotBShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "ax");
-            Match obtainedResult = (Match)ab.Match("ax");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = ab.Match("ax");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("ax", obtainedResult.RemainingText());
         }
 
         [Fact]
