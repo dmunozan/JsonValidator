@@ -40,12 +40,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithCharOutOfDigitRangeAndNotDigitCharacterShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "a9");
-            Match obtainedResult = (Match)digit.Match("a9");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = digit.Match("a9");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("a9", obtainedResult.RemainingText());
         }
 
         [Fact]
