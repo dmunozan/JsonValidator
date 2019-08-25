@@ -75,12 +75,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithHexDigitCharacterShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "12");
-            Match obtainedResult = (Match)hex.Match("012");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hex.Match("012");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("12", obtainedResult.RemainingText());
         }
 
         [Fact]
