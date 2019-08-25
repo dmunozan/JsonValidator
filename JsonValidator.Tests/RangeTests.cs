@@ -53,12 +53,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenCharOutOfRangeShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "1ab");
-            Match obtainedResult = (Match)new Range('a', 'f').Match("1ab");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
-
-            Assert.Equal(expectedResultString, obtainedResultString);
+            IMatch obtainedResult = new Range('a', 'f').Match("1ab");
+            
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("1ab", obtainedResult.RemainingText());
         }
     }
 }
