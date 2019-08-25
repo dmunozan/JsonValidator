@@ -49,12 +49,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenEmptyOnDigitShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "");
-            Match obtainedResult = (Match)digit.Match("");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = digit.Match("");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
         }
 
         [Fact]
