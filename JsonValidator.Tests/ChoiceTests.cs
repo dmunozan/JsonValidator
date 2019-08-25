@@ -111,12 +111,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithLastCharOfFirstHexRangeShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "8");
-            Match obtainedResult = (Match)hex.Match("f8");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hex.Match("f8");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("8", obtainedResult.RemainingText());
         }
 
         [Fact]
