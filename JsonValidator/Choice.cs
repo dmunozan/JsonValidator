@@ -19,7 +19,7 @@ namespace JsonValidator
 
                 if (currentPatternMatch.Success())
                 {
-                    return new Match(true, currentPatternMatch.RemainingText());
+                    return currentPatternMatch;
                 }
             }
 
