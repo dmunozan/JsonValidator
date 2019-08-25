@@ -17,12 +17,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenEmptyShouldReturnFalseAndEmptyString()
         {
-            Match expectedResult = new Match(false, "");
-            Match obtainedResult = (Match)new Range('a', 'z').Match("");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
-
-            Assert.Equal(expectedResultString, obtainedResultString);
+            IMatch obtainedResult = new Range('a', 'z').Match("");
+            
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
         }
 
         [Fact]
