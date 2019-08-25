@@ -49,12 +49,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenABNullShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, null);
-            Match obtainedResult = (Match)ab.Match(null);
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = ab.Match(null);
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Null(obtainedResult.RemainingText());
         }
 
         static Sequence abc = new Sequence(
