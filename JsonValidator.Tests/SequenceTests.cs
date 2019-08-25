@@ -74,7 +74,7 @@ namespace JsonValidator.Tests
         {
             IMatch obtainedResult = abc.Match("def");
 
-            Assert.True(obtainedResult.Success());
+            Assert.False(obtainedResult.Success());
             Assert.Equal("def", obtainedResult.RemainingText());
         }
 
