@@ -151,12 +151,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenNoStartsWithHexSeqShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "abc");
-            Match obtainedResult = (Match)hexSeq.Match("abc");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hexSeq.Match("abc");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("abc", obtainedResult.RemainingText());
         }
 
         [Fact]
