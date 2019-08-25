@@ -31,12 +31,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenNoStartsWithABShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "def");
-            Match obtainedResult = (Match)ab.Match("def");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = ab.Match("def");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("def", obtainedResult.RemainingText());
         }
 
         [Fact]
