@@ -44,12 +44,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenCharOnRangeShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "cd");
-            Match obtainedResult = (Match)new Range('a', 'f').Match("bcd");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
-
-            Assert.Equal(expectedResultString, obtainedResultString);
+            IMatch obtainedResult = new Range('a', 'f').Match("bcd");
+            
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("cd", obtainedResult.RemainingText());
         }
 
         [Fact]
