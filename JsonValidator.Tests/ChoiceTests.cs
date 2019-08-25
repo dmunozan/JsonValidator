@@ -22,12 +22,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithFirstCharOfDigitRangeShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "2");
-            Match obtainedResult = (Match)digit.Match("12");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
-
-            Assert.Equal(expectedResultString, obtainedResultString);
+            IMatch obtainedResult = digit.Match("12");
+            
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("2", obtainedResult.RemainingText());
         }
 
         [Fact]
