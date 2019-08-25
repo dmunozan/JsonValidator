@@ -13,12 +13,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithABShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "cd");
-            Match obtainedResult = (Match)ab.Match("abcd");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = ab.Match("abcd");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("cd", obtainedResult.RemainingText());
         }
 
         [Fact]
