@@ -58,12 +58,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenNullOnDigitShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, null);
-            Match obtainedResult = (Match)digit.Match(null);
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = digit.Match(null);
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Null(obtainedResult.RemainingText());
         }
 
         static Choice hex = new Choice(
