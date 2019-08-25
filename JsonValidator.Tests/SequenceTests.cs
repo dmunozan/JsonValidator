@@ -142,12 +142,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithHexSeqAndSpacePlusCharactersShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, " ab");
-            Match obtainedResult = (Match)hexSeq.Match("uB005 ab");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hexSeq.Match("uB005 ab");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.True(obtainedResult.Success());
+            Assert.Equal(" ab", obtainedResult.RemainingText());
         }
 
         [Fact]
