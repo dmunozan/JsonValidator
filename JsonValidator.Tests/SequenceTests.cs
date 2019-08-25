@@ -133,12 +133,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithHexSeqShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "ef");
-            Match obtainedResult = (Match)hexSeq.Match("uabcdef");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hexSeq.Match("uabcdef");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("ef", obtainedResult.RemainingText());
         }
 
         [Fact]
