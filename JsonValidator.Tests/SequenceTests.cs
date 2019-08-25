@@ -40,12 +40,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenABEmptyStringShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "");
-            Match obtainedResult = (Match)ab.Match("");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = ab.Match("");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
         }
 
         [Fact]
