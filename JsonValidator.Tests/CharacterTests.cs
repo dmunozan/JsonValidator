@@ -35,12 +35,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenFirstCharFromTextDoNotMatchesShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "wrong");
-            Match obtainedResult = (Match)new Character('a').Match("wrong");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
-
-            Assert.Equal(expectedResultString, obtainedResultString);
+            IMatch obtainedResult = new Character('a').Match("wrong");
+            
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("wrong", obtainedResult.RemainingText());
         }
     }
 }
