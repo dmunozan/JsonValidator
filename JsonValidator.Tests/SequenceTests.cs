@@ -160,12 +160,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenHexSeqNullShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, null);
-            Match obtainedResult = (Match)hexSeq.Match(null);
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hexSeq.Match(null);
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Null(obtainedResult.RemainingText());
         }
     }
 }
