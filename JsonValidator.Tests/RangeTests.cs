@@ -8,12 +8,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenNullShouldReturnFalseAndNull()
         {
-            Match expectedResult = new Match(false, null);
-            Match obtainedResult = (Match)new Range('a', 'z').Match(null);
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
-
-            Assert.Equal(expectedResultString, obtainedResultString);
+            IMatch obtainedResult = new Range('a', 'z').Match(null);
+            
+            Assert.False(obtainedResult.Success());
+            Assert.Null(obtainedResult.RemainingText());
         }
 
         [Fact]
