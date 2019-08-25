@@ -13,12 +13,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithDigitCharacterShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "12");
-            Match obtainedResult = (Match)digit.Match("012");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
-
-            Assert.Equal(expectedResultString, obtainedResultString);
+            IMatch obtainedResult = digit.Match("012");
+            
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("12", obtainedResult.RemainingText());
         }
 
         [Fact]
