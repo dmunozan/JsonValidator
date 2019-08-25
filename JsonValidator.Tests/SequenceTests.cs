@@ -124,12 +124,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenIsHexSeqShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "");
-            Match obtainedResult = (Match)hexSeq.Match("u1234");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hexSeq.Match("u1234");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
         }
 
         [Fact]
