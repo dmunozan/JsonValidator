@@ -13,11 +13,6 @@ namespace JsonValidator
 
         public IMatch Match(string text)
         {
-            if (string.IsNullOrEmpty(text))
-            {
-                return new Match(false, text);
-            }
-
             string remainingText = text;
 
             foreach (var pattern in patterns)
