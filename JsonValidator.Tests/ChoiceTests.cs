@@ -31,12 +31,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithLastCharOfDigitRangeShouldReturnTrueAndRemainingText()
         {
-            Match expectedResult = new Match(true, "2");
-            Match obtainedResult = (Match)digit.Match("92");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = digit.Match("92");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("2", obtainedResult.RemainingText());
         }
 
         [Fact]
