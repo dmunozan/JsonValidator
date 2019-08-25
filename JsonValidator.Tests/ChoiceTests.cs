@@ -138,12 +138,10 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenStartsWithCharOutOfFirstHexRangeAndNotSecondHexRangeDigitCharacterOrDigitRangeShouldReturnFalseAndText()
         {
-            Match expectedResult = new Match(false, "g8");
-            Match obtainedResult = (Match)hex.Match("g8");
-            string expectedResultString = expectedResult.Success() + ", " + expectedResult.RemainingText();
-            string obtainedResultString = obtainedResult.Success() + ", " + obtainedResult.RemainingText();
+            IMatch obtainedResult = hex.Match("g8");
 
-            Assert.Equal(expectedResultString, obtainedResultString);
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("g8", obtainedResult.RemainingText());
         }
 
         [Fact]
