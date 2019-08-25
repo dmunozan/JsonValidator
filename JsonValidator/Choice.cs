@@ -15,7 +15,7 @@ namespace JsonValidator
         {
             foreach (var pattern in patterns)
             {
-                Match currentPatternMatch = (Match)pattern.Match(text);
+                IMatch currentPatternMatch = pattern.Match(text);
 
                 if (currentPatternMatch.Success())
                 {
