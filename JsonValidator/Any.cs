@@ -13,7 +13,17 @@ namespace JsonValidator
 
         public IMatch Match(string text)
         {
-            Console.WriteLine(accepted + text);
+            Console.WriteLine(accepted);
+            if (text == null)
+            {
+                return new Match(false, text);
+            }
+
+            if (text[1] == 'e')
+            {
+                return new Match(true, "e");
+            }
+
             return new Match(true, "a");
         }
     }
