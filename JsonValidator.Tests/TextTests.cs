@@ -49,5 +49,24 @@ namespace JsonValidator.Tests
             Assert.False(obtainedResult.Success());
             Assert.Null(obtainedResult.RemainingText());
         }
+
+        //Check for special empty string cases
+        [Fact]
+        public void MatchWhenEmptyStringAndNotNullShouldReturnTrueAndText()
+        {
+            IMatch obtainedResult = new Text("").Match("true");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("true", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenEmptyStringAndNullShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new Text("").Match(null);
+
+            Assert.False(obtainedResult.Success());
+            Assert.Null(obtainedResult.RemainingText());
+        }
     }
 }
