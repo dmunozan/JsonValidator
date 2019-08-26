@@ -6,7 +6,7 @@ namespace JsonValidator.Tests
     public class ManyTests
     {
         [Fact]
-        public void MatchWhenOneOcurrenceShouldReturnTrueAndRemaningText()
+        public void MatchWhenStartsWithOneOcurrenceShouldReturnTrueAndRemaningText()
         {
             IMatch obtainedResult = new Many(new Character('a')).Match("abc");
 
