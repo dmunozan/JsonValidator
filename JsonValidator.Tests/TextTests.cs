@@ -8,7 +8,7 @@ namespace JsonValidator.Tests
         [Fact]
         public void MatchWhenSameStringShouldReturnTrueAndEmptyString()
         {
-            IMatch obtainedResult = new PrefixText("true").Match("true");
+            IMatch obtainedResult = new Text("true").Match("true");
 
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
