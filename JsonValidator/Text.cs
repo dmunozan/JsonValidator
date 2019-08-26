@@ -13,12 +13,12 @@ namespace JsonValidator
 
         public IMatch Match(string text)
         {
-            if (prefix == text)
+            if (text == null)
             {
-                return new Match(true, "");
+                return new Match(false, text);
             }
 
-            return new Match(false, text);
+            return text.StartsWith(prefix) ? new Match(true, text.Substring(prefix.Length)) : new JsonValidator.Match(false, text);
         }
     }
 }
