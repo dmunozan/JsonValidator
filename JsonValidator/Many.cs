@@ -13,7 +13,14 @@ namespace JsonValidator
 
         public IMatch Match(string text)
         {
-            return pattern.Match(text);
+            IMatch patternMatch = pattern.Match(text);
+
+            while (patternMatch.Success())
+            {
+                patternMatch = pattern.Match(patternMatch.RemainingText());
+            }
+
+            return new Match(true, patternMatch.RemainingText());
         }
     }
 }
