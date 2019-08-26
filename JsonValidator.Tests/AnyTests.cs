@@ -22,5 +22,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("e", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenNoStartsWithAnyAcceptedCharacterShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new Any("eE").Match("a");
+
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("a", obtainedResult.RemainingText());
+        }
     }
 }
