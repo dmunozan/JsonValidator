@@ -13,5 +13,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("a", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenStartsWithLastCharacterShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Any("aA").Match("Ae");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("e", obtainedResult.RemainingText());
+        }
     }
 }
