@@ -13,5 +13,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenStartsWithStringPlusOtherCharactersShouldReturnTrueAndOtherCharacters()
+        {
+            IMatch obtainedResult = new Text("true").Match("trueX");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("X", obtainedResult.RemainingText());
+        }
     }
 }
