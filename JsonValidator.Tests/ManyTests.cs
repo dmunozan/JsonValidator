@@ -49,5 +49,24 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Null(obtainedResult.RemainingText());
         }
+
+        //Range tests
+        [Fact]
+        public void MatchWhenStartsWithMoreThanOneOccurrenceOfPatternRangeShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Many(new Range('0', '9')).Match("12345ab123");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("ab123", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenNoStartsWithPatternRangeShouldReturnTrueAndText()
+        {
+            IMatch obtainedResult = new Many(new Range('0', '9')).Match("ab");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("ab", obtainedResult.RemainingText());
+        }
     }
 }
