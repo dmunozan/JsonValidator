@@ -2,11 +2,11 @@
 
 namespace JsonValidator
 {
-    public class PrefixText
+    public class Text
     {
         readonly string prefix;
 
-        public PrefixText(string prefix)
+        public Text(string prefix)
         {
             this.prefix = prefix;
         }
