@@ -31,5 +31,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("a", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenNoStartFitElementShouldReturnTrueAndText()
+        {
+            IMatch obtainedResult = new List(new Range('0', '9'), new Character(',')).Match("abc");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("abc", obtainedResult.RemainingText());
+        }
     }
 }
