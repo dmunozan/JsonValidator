@@ -40,5 +40,23 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("abc", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenEmptyStringShouldReturnTrueAndText()
+        {
+            IMatch obtainedResult = new List(new Range('0', '9'), new Character(',')).Match("");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenNullShouldReturnTrueAndText()
+        {
+            IMatch obtainedResult = new List(new Range('0', '9'), new Character(',')).Match(null);
+
+            Assert.True(obtainedResult.Success());
+            Assert.Null(obtainedResult.RemainingText());
+        }
     }
 }
