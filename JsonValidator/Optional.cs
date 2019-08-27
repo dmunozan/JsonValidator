@@ -13,7 +13,9 @@ namespace JsonValidator
 
         public IMatch Match(string text)
         {
-            return pattern.Match(text);
+            IMatch patternMatch = pattern.Match(text);
+
+            return new Match(true, patternMatch.RemainingText());
         }
     }
 }
