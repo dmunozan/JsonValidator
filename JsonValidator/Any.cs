@@ -2,7 +2,7 @@
 
 namespace JsonValidator
 {
-    public class Any
+    public class Any : IPattern
     {
         readonly string accepted;
 

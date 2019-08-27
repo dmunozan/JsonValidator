@@ -2,7 +2,7 @@
 
 namespace JsonValidator
 {
-    public class Text
+    public class Text : IPattern
     {
         readonly string prefix;
 
