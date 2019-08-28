@@ -8,7 +8,7 @@ namespace JsonValidator
 
         public Number()
         {
-            this.pattern = new Range('0', '9');
+            this.pattern = new OneOrMore(new Range('0', '9'));
         }
 
         public IMatch Match(string text)
