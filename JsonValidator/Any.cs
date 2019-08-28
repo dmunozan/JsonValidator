@@ -13,13 +13,16 @@ namespace JsonValidator
 
         public IMatch Match(string text)
         {
+            if (string.IsNullOrEmpty(text))
+            {
+                return new Match(false, text);
+            }
+
             foreach (char character in accepted)
             {
-                IMatch currentCharacterMatch = new Character(character).Match(text);
-
-                if (currentCharacterMatch.Success())
+                if (character == text[0])
                 {
-                    return currentCharacterMatch;
+                    return new Match(true, text.Substring(1));
                 }
             }
 
