@@ -12,9 +12,9 @@ namespace JsonValidator
             Choice digit = new Choice(new Character('0'), oneNine);
             OneOrMore digits = new OneOrMore(digit);
             Sequence integer = new Sequence(new Optional(new Character('-')), new Choice(new Sequence(oneNine, digits), digit));
-            Optional fraction = new Optional(new Sequence(new Character('.'), digits));
+            Sequence fraction = new Sequence(new Character('.'), digits);
 
-            this.pattern = new Sequence(integer, fraction);
+            this.pattern = new Sequence(integer, new Optional(fraction));
         }
 
         public IMatch Match(string text)
