@@ -40,5 +40,23 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenStartsWithLettersShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new Number().Match("R234");
+
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("R234", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenIntegerPlusFractionShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Number().Match("234.25");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
     }
 }
