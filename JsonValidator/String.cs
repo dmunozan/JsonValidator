@@ -12,7 +12,8 @@ namespace JsonValidator
             Any spaceExclamation = new Any(" !");
             Range hashtagToLeftSquareBracket = new Range('#', '[');
             Range rightSquareBracketToLastCharacter = new Range(']', LastCharacter);
-            Choice character = new Choice(spaceExclamation, hashtagToLeftSquareBracket, rightSquareBracketToLastCharacter);
+            Sequence backslashAndEscapableCharacter = new Sequence(new Character('\\'), new Character('n'));
+            Choice character = new Choice(spaceExclamation, hashtagToLeftSquareBracket, rightSquareBracketToLastCharacter, backslashAndEscapableCharacter);
             Many characters = new Many(character);
 
             this.pattern = new Sequence(new Character('"'), characters, new Character('"'));
