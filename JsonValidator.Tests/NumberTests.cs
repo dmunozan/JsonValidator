@@ -69,12 +69,74 @@ namespace JsonValidator.Tests
         }
 
         [Fact]
+        public void MatchWhenFractionShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new Number().Match(".45");
+
+            Assert.False(obtainedResult.Success());
+            Assert.Equal(".45", obtainedResult.RemainingText());
+        }
+
+        [Fact]
         public void MatchWhenIntegerPlusExponentShouldReturnTrueAndRemainingText()
         {
             IMatch obtainedResult = new Number().Match("234E5");
 
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenIntegerPlusExponentWithSignShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Number().Match("234E-5");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenIntegerPlusWrongExponentShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Number().Match("234E.5");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("E.5", obtainedResult.RemainingText());
+        }
+        [Fact]
+        public void MatchWhenExponentShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new Number().Match("E+5");
+
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("E+5", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenFractionPlusExponentShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new Number().Match(".56E+5");
+
+            Assert.False(obtainedResult.Success());
+            Assert.Equal(".56E+5", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenEmptyStringShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new Number().Match("");
+
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenNullShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new Number().Match(null);
+
+            Assert.False(obtainedResult.Success());
+            Assert.Null(obtainedResult.RemainingText());
         }
     }
 }
