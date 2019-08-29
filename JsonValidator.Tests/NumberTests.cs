@@ -58,5 +58,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenIntegerPlusPointAndNotNumberShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Number().Match("234.R5");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal(".R5", obtainedResult.RemainingText());
+        }
     }
 }
