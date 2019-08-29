@@ -58,5 +58,23 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenBackslashAndNonEscapableCharacterWrappedInDoubleQuotesShouldReturnFalseAndText()
+        {
+            IMatch obtainedResult = new String().Match("\"\\n\\g\"");
+
+            Assert.False(obtainedResult.Success());
+            Assert.Equal("\"\\n\\g\"", obtainedResult.RemainingText());
+        }
+
+        [Fact]
+        public void MatchWhenBackslashAndValidUnicodeCharacterWrappedInDoubleQuotesShouldReturnTrueAndEmptyString()
+        {
+            IMatch obtainedResult = new String().Match("\"\\u0a2F\"");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
     }
 }
