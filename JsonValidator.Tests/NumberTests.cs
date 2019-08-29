@@ -31,5 +31,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("234", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenStartsWithMinusSignShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Number().Match("-234");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
     }
 }
