@@ -22,5 +22,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenMoreThanOneNumberAndStartsWithZeroShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Number().Match("0234");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("234", obtainedResult.RemainingText());
+        }
     }
 }
