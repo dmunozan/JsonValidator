@@ -28,6 +28,11 @@ namespace JsonValidator
 
         public void Add(IPattern pattern)
         {
+            if (pattern == null)
+            {
+                return;
+            }
+
             int currentPatternCount = this.patterns.Length;
 
             IPattern[] newPatternArray = new IPattern[currentPatternCount + 1];
