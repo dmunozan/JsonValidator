@@ -4,7 +4,7 @@ namespace JsonValidator
 {
     public class Choice : IPattern
     {
-        readonly IPattern[] patterns;
+        IPattern[] patterns;
 
         public Choice(params IPattern[] patterns)
         {
@@ -24,6 +24,17 @@ namespace JsonValidator
             }
 
             return new Match(false, text);
+        }
+
+        public void Add(IPattern pattern)
+        {
+            int currentPatternCount = this.patterns.Length;
+
+            IPattern[] newPatternArray = new IPattern[currentPatternCount + 1];
+            patterns.CopyTo(newPatternArray, 0);
+            newPatternArray[currentPatternCount] = pattern;
+
+            this.patterns = newPatternArray;
         }
     }
 }
