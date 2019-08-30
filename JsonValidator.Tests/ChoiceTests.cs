@@ -171,6 +171,14 @@ namespace JsonValidator.Tests
             Assert.Null(obtainedResult.RemainingText());
         }
 
+        static Choice hexadecimal = new Choice(
+                digit,
+                new Choice(
+                    new Range('a', 'f'),
+                    new Range('A', 'F')
+                )
+        );
+
         IPattern someLetters = new Choice(
                 new Range('g', 'k'),
                 new Range('G', 'K')
@@ -179,17 +187,33 @@ namespace JsonValidator.Tests
         [Fact]
         public void AddWhenAddedPatternFitsStringShouldReturnTrueAndRemainingText()
         {
-            IMatch intialResult = hex.Match("g8");
+            IMatch intialResult = hexadecimal.Match("g8");
             
             Assert.False(intialResult.Success());
             Assert.Equal("g8", intialResult.RemainingText());
 
-            hex.Add(someLetters);
+            hexadecimal.Add(someLetters);
 
-            IMatch resultAfterAdd = hex.Match("g8");
+            IMatch resultAfterAdd = hexadecimal.Match("g8");
 
             Assert.True(resultAfterAdd.Success());
             Assert.Equal("8", resultAfterAdd.RemainingText());
+        }
+
+        [Fact]
+        public void AddWhenAddedPatternDoNotFitsStringShouldReturnFalseAndText()
+        {
+            IMatch intialResult = hexadecimal.Match("p8");
+
+            Assert.False(intialResult.Success());
+            Assert.Equal("p8", intialResult.RemainingText());
+
+            hexadecimal.Add(someLetters);
+
+            IMatch resultAfterAdd = hexadecimal.Match("p8");
+
+            Assert.False(resultAfterAdd.Success());
+            Assert.Equal("p8", resultAfterAdd.RemainingText());
         }
     }
 }
