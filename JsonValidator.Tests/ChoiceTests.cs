@@ -171,22 +171,22 @@ namespace JsonValidator.Tests
             Assert.Null(obtainedResult.RemainingText());
         }
 
-        static Choice hexadecimal = new Choice(
-                digit,
-                new Choice(
-                    new Range('a', 'f'),
-                    new Range('A', 'F')
-                )
-        );
-
-        IPattern someLetters = new Choice(
+        static IPattern someLetters = new Choice(
                 new Range('g', 'k'),
                 new Range('G', 'K')
         );
 
         [Fact]
-        public void AddWhenAddedPatternFitsStringShouldReturnTrueAndRemainingText()
+        public void AddWhenAddedPatternFitsStringShouldAddPatternAndMatchReturnTrueAndRemainingText()
         {
+            Choice hexadecimal = new Choice(
+                digit,
+                new Choice(
+                    new Range('a', 'f'),
+                    new Range('A', 'F')
+                )
+            );
+
             IMatch intialResult = hexadecimal.Match("g8");
             
             Assert.False(intialResult.Success());
@@ -201,14 +201,46 @@ namespace JsonValidator.Tests
         }
 
         [Fact]
-        public void AddWhenAddedPatternDoNotFitsStringShouldReturnFalseAndText()
+        public void AddWhenAddedPatternDoNotFitsStringShouldAddPatternAndMatchReturnFalseAndText()
         {
+            Choice hexadecimal = new Choice(
+                digit,
+                new Choice(
+                    new Range('a', 'f'),
+                    new Range('A', 'F')
+                )
+            );
+
             IMatch intialResult = hexadecimal.Match("p8");
 
             Assert.False(intialResult.Success());
             Assert.Equal("p8", intialResult.RemainingText());
 
             hexadecimal.Add(someLetters);
+
+            IMatch resultAfterAdd = hexadecimal.Match("p8");
+
+            Assert.False(resultAfterAdd.Success());
+            Assert.Equal("p8", resultAfterAdd.RemainingText());
+        }
+
+        [Fact]
+        public void AddWhenNullShouldAddNothingAndMatchReturnFalseAndText()
+        {
+            Choice hexadecimal = new Choice(
+                digit,
+                new Choice(
+                    new Range('a', 'f'),
+                    new Range('A', 'F')
+                )
+            );
+
+            IMatch intialResult = hexadecimal.Match("p8");
+
+            Assert.False(intialResult.Success());
+            Assert.Equal("p8", intialResult.RemainingText());
+
+            hexadecimal.Add(null);
 
             IMatch resultAfterAdd = hexadecimal.Match("p8");
 
