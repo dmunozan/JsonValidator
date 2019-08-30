@@ -170,5 +170,26 @@ namespace JsonValidator.Tests
             Assert.False(obtainedResult.Success());
             Assert.Null(obtainedResult.RemainingText());
         }
+
+        IPattern someLetters = new Choice(
+                new Range('g', 'k'),
+                new Range('G', 'K')
+        );
+
+        [Fact]
+        public void AddWhenAddedPatternFitsStringShouldReturnTrueAndRemainingText()
+        {
+            IMatch intialResult = hex.Match("g8");
+            
+            Assert.False(intialResult.Success());
+            Assert.Equal("g8", intialResult.RemainingText());
+
+            hex.Add(someLetters);
+
+            IMatch resultAfterAdd = hex.Match("g8");
+
+            Assert.True(resultAfterAdd.Success());
+            Assert.Equal("8", resultAfterAdd.RemainingText());
+        }
     }
 }
