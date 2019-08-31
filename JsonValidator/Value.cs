@@ -8,12 +8,18 @@ namespace JsonValidator
 
         public Value()
         {
-            this.pattern = new Choice(
+            Choice value = new Choice(
                 new String(),
                 new Number(),
                 new Text("true"),
                 new Text("false"),
                 new Text("null"));
+
+            Sequence array = new Sequence(new Character('['), new Character(']'));
+
+            value.Add(array);
+
+            this.pattern = value;
         }
 
         public IMatch Match(string text)
