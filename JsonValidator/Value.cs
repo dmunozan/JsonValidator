@@ -17,11 +17,15 @@ namespace JsonValidator
 
             Many whitespace = new Many(new Any(" \r\n\t"));
             Sequence separator = new Sequence(whitespace, new Character(','), whitespace);
+
             List elements = new List(value, separator);
 
             Sequence arrayValue = new Sequence(new Character('['), whitespace, new Optional(elements), whitespace, new Character(']'));
 
-            Sequence objectValue = new Sequence(new Character('{'), whitespace, new Character('}'));
+            Sequence member = new Sequence(whitespace, new String(), whitespace, new Character(':'), value);
+            List members = new List(member, separator);
+
+            Sequence objectValue = new Sequence(new Character('{'), whitespace, members, whitespace, new Character('}'));
 
             value.Add(arrayValue);
             value.Add(objectValue);
