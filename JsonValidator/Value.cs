@@ -15,7 +15,8 @@ namespace JsonValidator
                 new Text("false"),
                 new Text("null"));
 
-            Sequence array = new Sequence(new Character('['), new Character(']'));
+            Many whitespace = new Many(new Any(" \r\n\t"));
+            Sequence array = new Sequence(new Character('['), whitespace, new Character(']'));
 
             value.Add(array);
 
