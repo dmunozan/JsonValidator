@@ -94,5 +94,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenObjectInsideObjectWithWhiteSpacesShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Value().Match("{ \r\"fieldName\"\r:{ }\n\t}");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
     }
 }
