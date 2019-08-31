@@ -67,5 +67,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenArrayInsideArrayWithWhiteSpacesShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Value().Match("[ \r[ ]\n\t]");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
     }
 }
