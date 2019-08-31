@@ -21,7 +21,7 @@ namespace JsonValidator
 
             Sequence arrayValue = new Sequence(new Character('['), whitespace, new Optional(elements), whitespace, new Character(']'));
 
-            Sequence objectValue = new Sequence(new Character('{'), new Character('}'));
+            Sequence objectValue = new Sequence(new Character('{'), whitespace, new Character('}'));
 
             value.Add(arrayValue);
             value.Add(objectValue);
