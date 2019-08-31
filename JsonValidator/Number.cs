@@ -2,7 +2,7 @@
 
 namespace JsonValidator
 {
-    public class Number
+    public class Number : IPattern
     {
         readonly IPattern pattern;
 
