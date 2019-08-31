@@ -40,5 +40,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenStringShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Value().Match("\"string with\\nescapable\\fcharacters\\u1a9f\"");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
     }
 }
