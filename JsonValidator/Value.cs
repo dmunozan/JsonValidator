@@ -8,7 +8,7 @@ namespace JsonValidator
 
         public Value()
         {
-            this.pattern = new Text("null");
+            this.pattern = new Choice(new Text("null"), new Text("true"));
         }
 
         public IMatch Match(string text)
