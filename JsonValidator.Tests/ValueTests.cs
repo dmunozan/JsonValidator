@@ -49,5 +49,14 @@ namespace JsonValidator.Tests
             Assert.True(obtainedResult.Success());
             Assert.Equal("", obtainedResult.RemainingText());
         }
+
+        [Fact]
+        public void MatchWhenEmptyArrayShouldReturnTrueAndRemainingText()
+        {
+            IMatch obtainedResult = new Value().Match("[]");
+
+            Assert.True(obtainedResult.Success());
+            Assert.Equal("", obtainedResult.RemainingText());
+        }
     }
 }
