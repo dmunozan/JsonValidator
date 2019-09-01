@@ -20,7 +20,7 @@ namespace JsonValidator
 
             List elements = new List(value, separator);
 
-            Sequence arrayValue = new Sequence(new Character('['), whitespace, new Optional(elements), whitespace, new Character(']'));
+            Sequence arrayValue = new Sequence(new Character('['), whitespace, elements, whitespace, new Character(']'));
 
             Sequence member = new Sequence(new String(), whitespace, new Character(':'), whitespace, value);
             List members = new List(member, separator);
