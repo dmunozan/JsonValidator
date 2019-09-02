@@ -20,12 +20,12 @@ namespace JsonValidator
 
             List elements = new List(value, separator);
 
-            Sequence arrayValue = new Sequence(new Character('['), whitespace, elements, whitespace, new Character(']'));
+            Sequence arrayValue = new Sequence(whitespace, new Character('['), whitespace, elements, whitespace, new Character(']'), whitespace);
 
             Sequence member = new Sequence(new String(), whitespace, new Character(':'), whitespace, value);
             List members = new List(member, separator);
 
-            Sequence objectValue = new Sequence(new Character('{'), whitespace, members, whitespace, new Character('}'));
+            Sequence objectValue = new Sequence(whitespace, new Character('{'), whitespace, members, whitespace, new Character('}'), whitespace);
 
             value.Add(arrayValue);
             value.Add(objectValue);
